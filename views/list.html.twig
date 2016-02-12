@@ -1,35 +1,44 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css" media="all">
     <title>Address Book</title>
 </head>
 <body>
-    <h1>Contact List</h1>
+    <div class="container">
+       <div class="jumbotron">
+            <h1>Contact List</h1>
+        </div>
 
-    <form action='/contacts' method='post'>
-        <label for='name'>Contact name</label>
-        <input id='name' name='name' type='text'></input>
+        <form action='/contacts' method='post'>
+            <label for='name'>Name</label>
+            <input id='name' name='name' type='text'>
 
-        <label for='phone'>Contact phone</label>
-        <input id='phone' name='phone' type='numbers'></input>
+            <label for='phone'>Phone</label>
+            <input id='phone' name='phone' type='text'>
 
-        <label for='address'>Contact address</label>
-        <input id='address' name='address' type='text'></input>
+            <label for='address'>Address</label>
+            <input id='address' name='address' type='text'>
 
-        <button type='submit'>Add contact</button>
-    </form>
+            <button type='submit' class="btn btn-warning">Add contact</button>
+        </form>
 
-    {% if contacts is not empty %}
-        <p>Here are all your contacts:</p>
-        <ul>
-            {% for contact in contacts %}
-                <li>{{ contact.getDescription }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        {% if contacts is not empty %}
+            <h3>Here are all your contacts:</h3>
+            <ul>
+                {% for contact in contacts %}
+                    <li>{{ contact.getName }}</li>
+                    <li>{{ contact.getPhone }}</li>
+                    <li>{{ contact.getAddress }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-    <form action='/delete_contacts' method='post'>
-        <button type='submit'>Clear</button>
-    </form>
+        <form action='/delete_contacts' method='post'>
+            <button type='submit' class="btn btn-danger">Clear</button>
+        </form>
+    </div>
 
 </body>
 </html>
